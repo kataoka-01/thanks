@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ThankYou</title>
+  <%= favicon_link_tag 'favicon.ico' %>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <%= csrf_meta_tags %>
+  <%= analytics_init if Rails.env.production? %>
+
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <!-- Latest compiled and minified JavaScript -->
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-color/1.0.3/d3-color.min.js"></script>
+  <script src="https://unpkg.com/personality-sunburst-chart/dist/index.js"></script>
+</head>
+<body>
+
+<%= render 'partial/navbar' %>
+
+<%= yield %>
+
+<!-- Footer -->
+<%= render partial: "layouts/footer" %>
+
+<%= yield(:page_javascript) if content_for?(:page_javascript) %>
+
+<script type="text/javascript">
+  <% unless flash.empty? %>
+  <% flash.each do |f| %>
+  <% type = f[0].to_s.gsub('alert', 'error').gsub('notice', 'info') %>
+  toastr.options.positionClass = 'toast-bottom-left';
+  toastr.options.closeButton = true;
+  toastr.<%= type %>('<%= f[1] %>');
+  <% end  %>
+  <% end %>
+</script>
+
+<script src="https://cdn.logrocket.io/LogRocket.min.js" crossorigin="anonymous"></script>
+<script>window.LogRocket && window.LogRocket.init('3z5ovv/thankyou');</script>
+
+</body>
+</html>
