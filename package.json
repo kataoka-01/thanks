@@ -1,0 +1,12 @@
+{
+  "name": "thank_you",
+  "private": true,
+  "dependencies": {
+    "infinite-scroll": "^3.0.4",
+    "masonry-layout": "^4.2.2"
+  },
+  "engines": {
+    "yarn": "1.9.4",
+    "node": "8.11.4"
+  }
+}
